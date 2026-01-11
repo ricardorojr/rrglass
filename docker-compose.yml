@@ -1,0 +1,19 @@
+# docker-compose.yml
+version: '3.8' # Versão do Docker Compose
+
+services:
+  db: # Nome do serviço (pode ser 'postgres', 'database', etc.)
+    image: postgres:15 # Imagem oficial do PostgreSQL 15
+    container_name: rrglass # Nome do contêiner (opcional, mas útil)
+    restart: always # Reinicia o contêiner automaticamente se parar
+    ports:
+      - "5432:5432" # Mapeia a porta 5432 do host para 5432 do contêiner
+    environment:
+      POSTGRES_USER: user # Nome de usuário do banco de dados
+      POSTGRES_PASSWORD: user # Senha do banco de dados
+      POSTGRES_DB: rrglass # Nome do banco de dados inicial
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Volume para persistência dos dados
+
+volumes:
+  postgres_data: # Define o volume para persistência
